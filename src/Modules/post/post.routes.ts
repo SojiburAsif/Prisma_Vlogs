@@ -1,0 +1,21 @@
+import express, { NextFunction, Request, Response, Router } from 'express';
+import { PostController } from './post.controller';
+import auth, { UserRole } from '../../middlewares/auth';
+
+
+
+
+
+const router = express.Router();
+
+
+
+
+router.post("/", auth(UserRole.USER), PostController.createPost)
+
+
+router.get("/:PostId", PostController.getPostById)
+
+router.get("/", PostController.getAllpost)
+
+export const postRouter: Router = router;
